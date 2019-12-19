@@ -46,7 +46,7 @@ USER $NB_UID
 
 # R packages including IRKernel which gets installed globally.
 RUN conda install --quiet --yes \
-    'r-base=3.6.1' \
+   'r-base=3.6.1' \
     'r-caret=6.0*' \
     'r-crayon=1.3*' \
     'r-devtools=2.1*' \
@@ -70,7 +70,7 @@ RUN conda install --quiet --yes \
     conda clean --all -f -y && \
     fix-permissions $CONDA_DIR && \
     fix-permissions /home/$NB_USER
-
+RUN pip install feedparser nltk black plotly jupyter-nbextensions-configurator pandas-profiling pyautogui pyodbc wordcloud networkx scrapy requests-oauthlib pandas-datareader altair
 # Add Julia packages. Only add HDF5 if this is not a test-only build since
 # it takes roughly half the entire build time of all of the images on Travis
 # to add this one package and often causes Travis to timeout.
