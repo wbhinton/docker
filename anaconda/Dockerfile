@@ -45,7 +45,6 @@ EXPOSE 8888
 
 # Run Jupytewr notebook as Docker main process
 CMD ["jupyter", "notebook", "--allow-root", "--notebook-dir=/home/ubuntu/notebooks", "--ip='*'", "--port=8888", "--no-browser"]
- ds_docker
 # reference: https://hub.docker.com/_/ubuntu/
 FROM ubuntu:latest
 
