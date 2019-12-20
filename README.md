@@ -20,3 +20,10 @@ or list all container ip addresses
 docker inspect -f '{{.Name}} - {{.NetworkSettings.IPAddress }}' $(docker ps -aq)
 
 ```
+
+Or you can pass a flag that attaches the container's port to the localhost
+
+```
+-p 10000:8888
+localhost:10000
+```
