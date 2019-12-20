@@ -9,7 +9,7 @@ ENV LANG=C.UTF-8 LC_ALL=C.UTF-8 PATH=/opt/conda/bin:$PATH
 # create empty directory to attach volume
 RUN mkdir ~/projects 
 RUN apt-get update
-RUN apt-get install -y wget vim
+RUN apt-get install -y wget vim fonts-firacode
 
 RUN apt-get clean 
 RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh

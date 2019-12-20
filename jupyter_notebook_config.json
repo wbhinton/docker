@@ -1,0 +1,11 @@
+# add this file in the working dir then add --generate-config to the end of the launch script. This should build the custom config file in .jupyter/jupyter_notebook_config.json
+{
+    // Theme
+    // @jupyterlab/apputils-extension:themes
+    // Theme manager settings.
+    // *************************************
+
+    // Selected Theme
+    // Application-level visual styling theme
+    "theme": "JupyterLab Dark"
+}
