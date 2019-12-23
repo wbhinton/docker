@@ -1,0 +1,3 @@
+## Git Ignore file for docker build files
+# ignore everything in the secrets folder
+secrets/
