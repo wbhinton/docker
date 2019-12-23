@@ -71,7 +71,11 @@ RUN conda install --quiet --yes \
     conda clean --all -f -y && \
     fix-permissions $CONDA_DIR && \
     fix-permissions /home/$NB_USER
-RUN pip install geopy feedparser nltk black plotly jupyter-nbextensions-configurator pandas-profiling pyautogui wordcloud networkx scrapy requests-oauthlib pandas-datareader altair
+RUN pip install geopy kaggle feedparser nltk black plotly jupyter-nbextensions-configurator pandas-profiling pyautogui wordcloud networkx scrapy requests-oauthlib pandas-datareader altair
+RUN jupyter labextension install @ryantam626/jupyterlab_black
+RUN pip install https://github.com/ryantam626/jupyterlab_black/archive/master.zip
+RUN jupyter serverextension enable --py jupyterlab_black
+RUN jupyter labextension install @kaggle/jupyterlab
 
 # Add Julia packages. Only add HDF5 if this is not a test-only build since
 # it takes roughly half the entire build time of all of the images on Travis
@@ -82,7 +86,7 @@ RUN pip install geopy feedparser nltk black plotly jupyter-nbextensions-configur
 # taking effect properly on the .local folder in the jovyan home dir.
 RUN julia -e 'import Pkg; Pkg.update()' && \
     (test $TEST_ONLY_BUILD || julia -e 'import Pkg; Pkg.add("HDF5")') && \
-    julia -e "using Pkg; pkg\"add IJulia\"; pkg\"precompile\"" && \ 
+    julia -e "using Pkg; pkg\"add IJulia\"; pkg\"precompile\"" && \
     # move kernelspec out of home \
     mv $HOME/.local/share/jupyter/kernels/julia* $CONDA_DIR/share/jupyter/kernels/ && \
     chmod -R go+rx $CONDA_DIR/share/jupyter && \
